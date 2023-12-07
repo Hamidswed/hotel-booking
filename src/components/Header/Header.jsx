@@ -9,11 +9,14 @@ import { format } from "date-fns";
 import {
   createSearchParams,
   useNavigate,
-  // useSearchParams,
+  useSearchParams,
 } from "react-router-dom";
 
 export default function Header() {
-  const [destination, setDestination] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [destination, setDestination] = useState(
+    searchParams.get("destination") || ""
+  );
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 1,
@@ -37,7 +40,7 @@ export default function Header() {
       };
     });
   };
-  // const [searchParams, setSearchParams] = useSearchParams();
+
   const navigate = useNavigate();
   const handleSearch = () => {
     const encodedParams = createSearchParams({
