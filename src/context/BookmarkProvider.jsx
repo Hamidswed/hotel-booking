@@ -10,12 +10,12 @@ export default function BookmarkProvider({ children }) {
   const [currentBookmark, setCurrentBookmark] = useState({});
   const [isLoadingCurrBookmark, setIsLoadingCurrBookmark] = useState(false);
 
-  const { isLoading, data: bookmarks } = useFetch(`${BASE_URL}/bookmark`);
+  const { isLoading, data: bookmarks } = useFetch(`${BASE_URL}/bookmarks`);
 
   const getBookmark = async (id) => {
     try {
       setIsLoadingCurrBookmark(true);
-      const { data } = await axios.get(`${BASE_URL}/bookmark/${id}`);
+      const { data } = await axios.get(`${BASE_URL}/bookmarks/${id}`);
       setCurrentBookmark(data);
       setIsLoadingCurrBookmark(false);
     } catch (error) {
