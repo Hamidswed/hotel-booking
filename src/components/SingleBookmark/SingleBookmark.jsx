@@ -5,13 +5,13 @@ import Loader from "../Loader/Loader";
 
 export default function SingleBookmark() {
   const { id } = useParams();
-  const { getBookmark, isLoadingCurrBookmark, currentBookmark } = useBookmark();
+  const { getBookmark, isLoading, currentBookmark } = useBookmark();
   const navigate = useNavigate();
   useEffect(() => {
     getBookmark(id);
   }, [id]);
 
-  if (isLoadingCurrBookmark) return <Loader />;
+  if (isLoading) return <Loader />;
 
   return (
     <div>

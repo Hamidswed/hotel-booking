@@ -1368,6 +1368,42 @@
       "longitude": "67.78003711374224",
       "host_location": "Baba Kot Pakistan",
       "id": 8
+    },
+    {
+      "cityName": "Akaki",
+      "country": "Ethiopia",
+      "countryCode": "ET",
+      "latitude": "8.650540510874745",
+      "longitude": "38.75976562500001",
+      "host_location": "Akaki Ethiopia",
+      "id": 9
+    },
+    {
+      "cityName": "Ayos",
+      "country": "Cameroon",
+      "countryCode": "CM",
+      "latitude": "3.9344046107053594",
+      "longitude": "12.392578125",
+      "host_location": "Ayos Cameroon",
+      "id": 10
+    },
+    {
+      "cityName": "Fada N'gourma",
+      "country": "Burkina Faso",
+      "countryCode": "BF",
+      "latitude": "12.022128781437893",
+      "longitude": "0.6152343750000001",
+      "host_location": "Fada N'gourma Burkina Faso",
+      "id": 11
+    },
+    {
+      "cityName": "Akonolinga",
+      "country": "Cameroon",
+      "countryCode": "CM",
+      "latitude": "3.7737989371086313",
+      "longitude": "12.237396240234377",
+      "host_location": "Akonolinga Cameroon",
+      "id": 12
     }
   ]
 }

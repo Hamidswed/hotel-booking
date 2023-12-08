@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import Loader from "../Loader/Loader";
 import ReactCountryFlag from "react-country-flag";
+import { useBookmark } from "../../context/BookmarkProvider";
 
 const BASE_GEOCODING_URL =
   "https://api.bigdatacloud.net/data/reverse-geocode-client";
@@ -17,8 +18,11 @@ export default function AddNewBookmark() {
   const [countryCode, setCountryCode] = useState("");
   const [isLoadingGeoCoding, setIsLoadingGeoCoding] = useState(false);
 
+  const { createBookmark } = useBookmark();
+
   useEffect(() => {
     if (!lat || !lng) return;
+
     async function getLocation() {
       setIsLoadingGeoCoding(true);
       try {
@@ -45,10 +49,26 @@ export default function AddNewBookmark() {
 
   if (isLoadingGeoCoding) return <Loader />;
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!cityName || !country) return;
+
+    const newBookmark = {
+      cityName,
+      country,
+      countryCode,
+      latitude: lat,
+      longitude: lng,
+      host_location: cityName + " " + country,
+    };
+    await createBookmark(newBookmark);
+    navigate("/bookmark");
+  };
+
   return (
     <div>
       <h2>Bookmark new location</h2>
-      <form action="" className="form">
+      <form onSubmit={handleSubmit} className="form">
         <div className="formControl">
           <label htmlFor="cityName">City name</label>
           <input
@@ -68,7 +88,7 @@ export default function AddNewBookmark() {
             name="Country"
             id="Country"
           />
-          <ReactCountryFlag svg countryCode={countryCode} className="flag"/>
+          <ReactCountryFlag svg countryCode={countryCode} className="flag" />
         </div>
         <div className="buttons">
           <button
@@ -80,7 +100,9 @@ export default function AddNewBookmark() {
           >
             &larr; Back
           </button>
-          <button className="btn btn--primary">Add</button>
+          <button className="btn btn--primary" type="submit">
+            Add
+          </button>
         </div>
       </form>
     </div>

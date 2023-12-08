@@ -1,6 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
-import useFetch from "../hooks/useFetch";
+import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 const BASE_URL = "http://localhost:5000";
@@ -8,18 +7,47 @@ const BookmarkContext = createContext();
 
 export default function BookmarkProvider({ children }) {
   const [currentBookmark, setCurrentBookmark] = useState({});
-  const [isLoadingCurrBookmark, setIsLoadingCurrBookmark] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [bookmarks, setBookmarks] = useState([]);
 
-  const { isLoading, data: bookmarks } = useFetch(`${BASE_URL}/bookmarks`);
+  useEffect(() => {
+    const fetchBookmarkList = async () => {
+      setIsLoading(true);
+      try {
+        const { data } = await axios.get(`${BASE_URL}/bookmarks`);
+        setBookmarks(data);
+      } catch (error) {
+        toast.error(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchBookmarkList();
+  }, []);
 
   const getBookmark = async (id) => {
+    setIsLoading(true);
     try {
-      setIsLoadingCurrBookmark(true);
       const { data } = await axios.get(`${BASE_URL}/bookmarks/${id}`);
       setCurrentBookmark(data);
-      setIsLoadingCurrBookmark(false);
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const createBookmark = async (newBookmark) => {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.post(`${BASE_URL}/bookmarks/`, newBookmark);
+      console.log(data, "post data");
+      setCurrentBookmark(data);
+      setBookmarks((prev) => [...prev, data]);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -29,8 +57,8 @@ export default function BookmarkProvider({ children }) {
         isLoading,
         currentBookmark,
         getBookmark,
-        isLoadingCurrBookmark,
         bookmarks,
+        createBookmark,
       }}
     >
       {children}
