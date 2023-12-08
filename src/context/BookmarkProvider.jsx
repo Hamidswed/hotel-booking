@@ -41,9 +41,20 @@ export default function BookmarkProvider({ children }) {
     setIsLoading(true);
     try {
       const { data } = await axios.post(`${BASE_URL}/bookmarks/`, newBookmark);
-      console.log(data, "post data");
       setCurrentBookmark(data);
       setBookmarks((prev) => [...prev, data]);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const deleteBookmark = async (id) => {
+    try {
+      setIsLoading(true);
+      await axios.delete(`${BASE_URL}/bookmarks/${id}`);
+      setBookmarks((prev) => prev.filter((item) => item.id !== id));
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -59,6 +70,7 @@ export default function BookmarkProvider({ children }) {
         getBookmark,
         bookmarks,
         createBookmark,
+        deleteBookmark,
       }}
     >
       {children}
