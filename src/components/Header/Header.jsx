@@ -7,10 +7,12 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import {
+  Link,
   createSearchParams,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
+import { useAuth } from "../../context/AuthProvider";
 
 export default function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -31,6 +33,8 @@ export default function Header() {
     },
   ]);
   const [openDate, setOpenDate] = useState(false);
+
+  const { user, isAuthenticated, logout } = useAuth();
 
   const handleOptions = (name, operation) => {
     setOptions((prev) => {
@@ -54,8 +58,14 @@ export default function Header() {
     });
     // setSearchParams(encodedParams);
   };
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
   return (
     <div className="header">
+      <Link to={"/"}>Home</Link>
+      <Link to={"/bookmark"}>Bookmarks</Link>
       <div className="headerSearch">
         <div className="headerSearchItem">
           <MdLocationOn className="headerIcon locationIcon" />
@@ -109,6 +119,24 @@ export default function Header() {
           </button>
         </div>
       </div>
+      {isAuthenticated ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "5px",
+          }}
+        >
+          <p>Hello {user.name}</p>
+          <button className="btn btn--back" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      ) : (
+        <Link to={"/login"}>Login</Link>
+      )}
     </div>
   );
 }
