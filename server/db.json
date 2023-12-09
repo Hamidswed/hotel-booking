@@ -1325,31 +1325,31 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Kortemark",
+      "cityName": "Ieper",
       "country": "Belgium",
       "countryCode": "BE",
-      "latitude": "50.991601700235044",
-      "longitude": "2.9948043823242188",
-      "host_location": "Kortemark Belgium",
-      "id": 1
+      "latitude": "50.90941845935382",
+      "longitude": "2.8348159790039067",
+      "host_location": "Ieper Belgium",
+      "id": 5
     },
     {
-      "cityName": "Oostkamp",
+      "cityName": "Zedelgem",
       "country": "Belgium",
       "countryCode": "BE",
-      "latitude": "51.14782333636306",
-      "longitude": "3.2382202148437504",
-      "host_location": "Oostkamp Belgium",
-      "id": 2
+      "latitude": "51.121350666698326",
+      "longitude": "3.093338012695313",
+      "host_location": "Zedelgem Belgium",
+      "id": 7
     },
     {
-      "cityName": "Houthulst",
+      "cityName": "Maldegem",
       "country": "Belgium",
       "countryCode": "BE",
-      "latitude": "50.9697776334529",
-      "longitude": "2.944507598876953",
-      "host_location": "Houthulst Belgium",
-      "id": 4
+      "latitude": "51.208066194162924",
+      "longitude": "3.46343994140625",
+      "host_location": "Maldegem Belgium",
+      "id": 8
     }
   ]
 }
