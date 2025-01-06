@@ -20,7 +20,7 @@ export default function SingleHotel() {
         {currentHottel.number_of_reviews} reviews &bull;{" "}
         {currentHottel.smart_location}
       </div>
-      <img src={currentHottel.picture_url?.url} alt={currentHottel.name} />
+      <img src={currentHottel.thumbnail_url} alt={currentHottel.name} />
     </div>
   );
 }

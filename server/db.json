@@ -1325,15 +1325,6 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Ieper",
-      "country": "Belgium",
-      "countryCode": "BE",
-      "latitude": "50.90941845935382",
-      "longitude": "2.8348159790039067",
-      "host_location": "Ieper Belgium",
-      "id": 5
-    },
-    {
       "cityName": "Zedelgem",
       "country": "Belgium",
       "countryCode": "BE",
@@ -1350,6 +1341,15 @@
       "longitude": "3.46343994140625",
       "host_location": "Maldegem Belgium",
       "id": 8
+    },
+    {
+      "cityName": "Kortemark",
+      "country": "Belgium",
+      "countryCode": "BE",
+      "latitude": "51.01395525054015",
+      "longitude": "2.9927444458007812",
+      "host_location": "Kortemark Belgium",
+      "id": 9
     }
   ]
 }
